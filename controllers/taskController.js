@@ -1,8 +1,15 @@
 const TaskModel=require('../models/taskModel')
 const mongoose =require('mongoose')
+
+
+
+
+
 //get all tasks
 const getAllTasks=async(req,res)=>{
-    const tasks=await TaskModel.find({}).sort({createdAt:-1})
+
+    const user_id = req.user._id
+    const tasks=await TaskModel.find({user_id}).sort({createdAt:-1})
     res.status(200).json(tasks)
 }
 
@@ -25,7 +32,8 @@ const getTask= async(req,res)=>{
 const createTask=async(req,res)=>{
     const {title,content,status,finish_date}=req.body
     try{
-        const task=await TaskModel.create({title,content,status,finish_date})
+        const user_id=req.user._id
+        const task=await TaskModel.create({title,content,status,finish_date,user_id})
         res.status(200).json(task)
     }catch(err){
         res.status(400).json({error:"Please fill all the fields"})

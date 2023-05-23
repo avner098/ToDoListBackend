@@ -1,7 +1,11 @@
 const express = require('express')
 
-const router = express.Router()
+
 const {createTask,getAllTasks,getTask,udpateTask,deleteTask}=require('../controllers/taskController')
+const requireAuth = require('../middleware/requireAuth')
+const router = express.Router()
+
+router.use(requireAuth)
 
 //Get all tasks
 router.get('/',getAllTasks) 
