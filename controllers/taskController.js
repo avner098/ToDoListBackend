@@ -40,8 +40,29 @@ const createTask=async(req,res)=>{
     }
 }
 
+//update task
+const udpateTask=async(req,res)=>{
+    console.log("update task")
+
+    
+    const {id}=req.params 
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error:'No such task'})
+    }
+    
+    const task= await TaskModel.findOneAndUpdate({_id:id},{...req.body},{ new: true })
+    
+    if(!task){
+        return res.status(400).json({error: "no avaible task"})
+    }
+    res.status(200).json(task)
+
+}
+
 //delete task
 const deleteTask=async(req,res)=>{
+    console.log("deleteTask")
     const {id}=req.params   
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({error:'No such task'})
@@ -55,22 +76,7 @@ const deleteTask=async(req,res)=>{
    
 }
 
-//update task
-const udpateTask=async(req,res)=>{
-    const {id}=req.params   
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error:'No such task'})
-    }
-    const task=await TaskModel.findOneAndUpdate({_id:id},{
-        ...req.body
-    })
-    if(!task){
-        return res.status(400).json({error: "no avaible task"})
-    }
-    res.status(200).json(task)
 
-    
-}
 
 
 module.exports={

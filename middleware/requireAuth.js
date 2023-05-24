@@ -4,6 +4,7 @@ const User = require('../models/userModel')
 
 const requireAuth = async (req,res,next) => {
     const {autthorization} = req.headers
+    
 
     
 
@@ -12,6 +13,7 @@ const requireAuth = async (req,res,next) => {
     }
     const token = autthorization.split(' ')[1]
 
+    
     try{
        const {_id} = jwt.verify(token , process.env.SECRET)
 
@@ -19,6 +21,7 @@ const requireAuth = async (req,res,next) => {
        next()
 
     }catch(err){
+        
         console.log(err)
         res.status(401).json({error:"requst not authorized"})
     }

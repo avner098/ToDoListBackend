@@ -10,8 +10,6 @@ router.use(requireAuth)
 //Get all tasks
 router.get('/',getAllTasks) 
 
-//Get single task
-router.get('/:id',getTask) 
 
 //Post new task
 router.post('/',createTask) 
@@ -21,6 +19,9 @@ router.delete('/:id',deleteTask)
 
 //update task
 router.patch('/:id',udpateTask) 
+
+//Get single task
+router.get('/:id',getTask) 
 
 
 
