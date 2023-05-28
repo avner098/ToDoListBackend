@@ -30,10 +30,11 @@ const getTask= async(req,res)=>{
 
 //create task
 const createTask=async(req,res)=>{
-    const {title,content,status,finish_date}=req.body
+    const {title,content,status,finish_date,urgency}=req.body
+    console.log(title,content,status,finish_date,urgency)
     try{
         const user_id=req.user._id
-        const task=await TaskModel.create({title,content,status,finish_date,user_id})
+        const task=await TaskModel.create({title,content,status,finish_date,urgency,user_id})
         res.status(200).json(task)
     }catch(err){
         res.status(400).json({error:"Please fill all the fields"})

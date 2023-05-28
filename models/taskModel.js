@@ -17,7 +17,11 @@ const taskSchema=new Schema({
     },
     finish_date:{
         type: String,
-        
+        required: true
+    },
+    urgency:{
+        type: String,
+        required: true
     },
     user_id:{
         type: String,
