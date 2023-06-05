@@ -9,6 +9,7 @@ const requireAuth = async (req,res,next) => {
     
 
     if(!autthorization) {
+        
         return res.status(401).json({error:"token is required"})
     }
     const token = autthorization.split(' ')[1]
