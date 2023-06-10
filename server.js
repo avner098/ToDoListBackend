@@ -3,15 +3,11 @@ const express = require('express')
 const taskRoutes = require('./routes/tasks')
 const mongoose = require('mongoose')
 const userRoutes =require('./routes/user')
-const cors = require('cors');
+
 //express app
 const app = express()
 
-app.use(
-    cors({
-      origin: 'https://to-do-list-frontend-alpha.vercel.app',
-    })
-  );
+console.log("1")
 
 //middleware
 app.use(express.json())
